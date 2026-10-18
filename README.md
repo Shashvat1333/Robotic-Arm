@@ -2,6 +2,8 @@
 
 A robotic arm I built from scratch that you control wirelessly with a Bluetooth controller, using an ESP32 board.
 
+<img width="616" height="752" alt="image" src="https://github.com/user-attachments/assets/9ddec064-8fc9-424b-8597-676401248a46" />
+
 
 ## Table of Contents
 - [Overview](#overview)
@@ -34,8 +36,7 @@ robotic-arm-project/
 ├── CAD/ # .step files for every 3D printed part
 ├── Firmware/ # ESP32 code (FIRMWARE.ino)
 ├── Wiring Diagrams.md # How everything is wired
-├── Images & Demo/ # Pictures and video of the build
-├── BOM.md # Full parts list with prices
+├── BOM.csv # Full parts list with prices
 ├── JOURNAL.md # My build log, day by day
 ├── LICENSE.md
 └── README.md
@@ -45,7 +46,7 @@ robotic-arm-project/
 
 ## CAD Model & Assembly
 
-I modeled every joint and structural piece in Onshape, paying close attention to how the parts would actually fit together once printed, not just how they looked on screen. This let me test gear ratios and pivot points digitally before wasting filament on parts that wouldn't work. All the finished, ready to print parts are in the [CAD](https://github.com/Shashvat1333/robotic-arm-project/tree/main/CAD) folder as `.step` files.
+I modeled every joint and structural piece in Onshape, paying close attention to how the parts would actually fit together once printed, not just how they looked on screen. This let me test gear ratios and pivot points digitally before wasting filament on parts that wouldn't work. All the finished, ready to print parts are in the [CAD](https://github.com/Shashvat1333/Robotic-Arm/tree/main/CAD) folder as `.step` files.
 
 To assemble the frame, I melted heat set inserts into the printed plastic with a soldering iron. This gives the M3/M2 bolts real metal threads to grip instead of just biting into plastic, which means the joints won't strip out over time and I can still take things apart later if I need to fix something.
 
@@ -55,7 +56,7 @@ To assemble the frame, I melted heat set inserts into the printed plastic with a
 
 I didn't use a manufactured PCB for this. Instead everything is wired on a soldered perfboard, because the servos pull a lot of current and a normal breadboard just can't handle that safely without overheating or dropping voltage.
 
-The full wiring breakdown is in [Wiring Diagrams.md](Wiring%20Diagrams.md), but here's the short version:
+The full wiring breakdown is in [Wiring Diagrams.md](https://github.com/Shashvat1333/Robotic-Arm/blob/main/Wiring%20Diagram.md), but here's the short version:
 
 | Component | ESP32 GPIO (Signal) | Power (+) | Ground (–) |
 |---|---|---|---|
@@ -74,7 +75,7 @@ The full wiring breakdown is in [Wiring Diagrams.md](Wiring%20Diagrams.md), but 
 
 The code is written in C++ using the Arduino framework. It uses the `ESP32Servo` and `Bluepad32` libraries to take input from a Bluetooth controller and turn the joystick and trigger positions into servo movement. It's always listening for a paired controller, and once one connects it reads the stick positions and sends the right PWM signal to each servo.
 
-- **Code:** [FIRMWARE.ino](https://github.com/Shashvat1333/robotic-arm-project/blob/main/FIRMWARE.ino)
+- **Code:** [FIRMWARE.ino](https://github.com/Shashvat1333/Robotic-Arm/blob/main/FIRMWARE.ino)
 - **Libraries you need:** `ESP32Servo`, `Bluepad32`
 - **Board:** ESP32 Dev Module
 
@@ -84,35 +85,32 @@ The code is written in C++ using the Arduino framework. It uses the `ESP32Servo`
 
 Here's how to build this yourself:
 
-1. **Print the parts** — Grab the `.step` files from the [CAD](https://github.com/Shashvat1333/robotic-arm-project/tree/main/CAD) folder and slice them. I used PLA for mine.
+1. **Print the parts** — Grab the `.step` files from the [CAD](https://github.com/Shashvat1333/Robotic-Arm/tree/main/CAD) folder and slice them. I used PLA for mine.
 2. **Put the frame together** — Melt the M3/M2 heat set inserts into the printed parts with a soldering iron, then bolt everything together following the CAD model.
-3. **Wire it up** — Follow [Wiring Diagrams.md](Wiring%20Diagrams.md) to connect the servos, ESP32, and power supply through the perfboard.
-4. **Upload the firmware** — Open [FIRMWARE.ino](https://github.com/Shashvat1333/robotic-arm-project/blob/main/FIRMWARE.ino) in the Arduino IDE, install the `ESP32Servo` and `Bluepad32` libraries, pick the ESP32 Dev Module board, and hit upload.
+3. **Wire it up** — Follow [Wiring Diagrams.md](https://github.com/Shashvat1333/Robotic-Arm/blob/main/Wiring%20Diagram.md) to connect the servos, ESP32, and power supply through the perfboard.
+4. **Upload the firmware** — Open [FIRMWARE.ino](https://github.com/Shashvat1333/Robotic-Arm/blob/main/FIRMWARE.ino) in the Arduino IDE, install the `ESP32Servo` and `Bluepad32` libraries, pick the ESP32 Dev Module board, and hit upload.
 5. **Pair a controller** — Turn the arm on, pair a Bluetooth controller, and you're good to go.
 
 ---
 
 ## Bill of Materials (BOM)
 
-| # | Item | Qty | Description | Price (tax incl.) | Link |
-|---|------|-----|-------------|-------------------|------|
-| 1 | 25KG Digital RC Servo (DS3225) | 4 Pack | Waterproof, high torque servo for the main arm joints | $65.60 | [AliExpress](https://www.aliexpress.com/item/1005009734701047.html) |
-| 2 | MG90S 9g Micro Servo Motor | 2 Pack | Small servo for the gripper and wrist | $7.40 | [AliExpress](https://www.aliexpress.com/item/4000903254039.html) |
-| 3 | 5V 10A Power Supply Adapter | 1 | Main power for the servos | $23.40 | [AliExpress](https://www.aliexpress.com/item/1005004121728138.html) |
-| 4 | 5.5x2.1mm DC Power Female Jack Pigtail | 1 | Connects the power adapter to the circuit | $6.00 | [AliExpress](https://www.aliexpress.com/item/1005008401380227.html) |
-| 5 | ESP32-WROOM-32 Dev Board (CH340C, Type-C) | 1 | The brain of the arm, runs Bluepad32 | $8.00 | [AliExpress](https://www.aliexpress.com/item/1005008981904299.html) |
-| 6 | 22AWG Stranded Wire | 1 | For all the wiring, including servo leads | $10.17 | [AliExpress](https://www.aliexpress.com/item/1005006441248773.html) |
-| 7 | KADRICK 420PCS M3 Heat Set Inserts Kit | 1 | Threaded inserts for the printed parts | $25.48 | [Amazon](https://www.amazon.com/Threaded-Assortment-M3x6-30mm-Installation-Printing/dp/B0GYRQG7F2/) |
-| 8 | Perfboard (6cm × 8cm) | 1 | Replaces a breadboard for safe high current wiring | $2.80 | [AliExpress](https://www.aliexpress.com/item/1005006829112244.html) |
-| 9 | PLA+ Filament 1.75mm 1KG | 673g used | Printing material, cost reflects what I actually used | $15.07 | [AliExpress](https://www.aliexpress.com/item/1005011683191901.html) |
-| 10 | Import Charges | — | Customs fees on international orders | $12.00 | — |
+| Item | Qty | Supplier | Cost/item | Total Cost | Link |
+| :--- | :---: | :--- | :---: | :---: | :--- |
+| MG90S Servo | 1 | AliExpress | $12.08 | $12.08 | [Link](https://www.aliexpress.com/item/1005006883748786.html) |
+| PLA 1kg | 1 | Amazon | $16.78 | $16.78 | [Link](https://www.amazon.ca/ELEGOO-Filament-Identification-Compatible-Dimensional/dp/B0FZVLHDSQ) |
+| Soft Silicon Wire | 2 | AliExpress | $3.50 | $7.00 | [Link](https://www.aliexpress.com/item/1005006441248773.html) |
+| ESP32-32D | 1 | AliExpress | $5.77 | $5.77 | [Link](https://www.aliexpress.com/item/1005007820190456.html) |
+| M3 Brass Insert Nut and Stainless Steel Screw Kit | 1 | AliExpress | $15.31 | $15.31 | [Link](https://www.aliexpress.com/item/1005008394979732.html) |
+| M2 Heat Inserts | 1 | AliExpress | $3.25 | $3.25 | [Link](https://www.aliexpress.com/item/32890237459.html) |
+| M2 M2.5 M3 KM Screw Flat Head Phillips Screws Kit | 1 | AliExpress | $4.32 | $4.32 | [Link](https://www.aliexpress.com/item/4000056753202.html) |
+| Estimated total shipping | 1 | - | $0.00 | $0.00 | - |
+| **Total** | | | | **$64.51** | |
 
-**Total Project Cost: $175.92**
-
-Full breakdown in [BOM.md](https://github.com/Shashvat1333/robotic-arm-project/blob/main/BOM.md).
+Full breakdown in [BOM.csv](https://github.com/Shashvat1333/Robotic-Arm/blob/main/BOM.csv).
 
 ---
 
 ## License
 
-This project is licensed under the terms in [LICENSE.md](https://github.com/Shashvat1333/robotic-arm-project/blob/main/LICENSE.md).
+This project is licensed under the terms in [LICENSE.md](https://github.com/Shashvat1333/Robotic-Arm/blob/main/LICENSE.md).
