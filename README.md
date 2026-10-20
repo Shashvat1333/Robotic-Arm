@@ -29,21 +29,6 @@ I did every part of this myself. I sketched out how the arm should move, I creat
 
 ---
 
-## Repository Structure 
-
-```
-robotic-arm-project/
-├── CAD/ # .step files for every 3D printed part
-├── Firmware/ # ESP32 code (FIRMWARE.ino)
-├── Wiring Diagrams.md # How everything is wired
-├── BOM.csv # Full parts list with prices
-├── JOURNAL.md # My build log, day by day
-├── LICENSE.md
-└── README.md
-```
-
----
-
 ## CAD Model & Assembly
 
 I modeled every joint and structural piece in Onshape, paying close attention to how the parts would actually fit together once printed, not just how they looked on screen. This let me test gear ratios and pivot points digitally before wasting filament on parts that wouldn't work. All the finished, ready to print parts are in the [CAD](https://github.com/Shashvat1333/Robotic-Arm/tree/main/CAD) folder as `.step` files.
