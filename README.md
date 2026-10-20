@@ -54,6 +54,8 @@ The full wiring breakdown is in [Wiring Diagrams.md](https://github.com/Shashvat
 | ESP32 Board | — | VIN pin connected to + bus | GND pin connected to – bus |
 | Power Supply | — | 5V DC Adapter (+) | 5V DC Adapter (–) |
 
+<img width="675" height="537" alt="image" src="https://github.com/user-attachments/assets/772e2fc3-454b-4216-b6a7-646e9ce1c4c3" />
+
 ---
 
 ## Firmware
