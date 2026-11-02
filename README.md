@@ -35,6 +35,8 @@ I modeled every joint and structural piece in Onshape, paying close attention to
 
 To assemble the frame, I melted heat set inserts into the printed plastic with a soldering iron. This gives the M3/M2 bolts real metal threads to grip instead of just biting into plastic, which means the joints won't strip out over time and I can still take things apart later if I need to fix something.
 
+[View Onshape Model](https://cad.onshape.com/documents/89bbf758efc35d44fc2c7f89/w/6047d661cfc2e18d2b2fc1e8/e/c4275a884fb28693d571bcf3?renderMode=0&uiState=6ae88b0a6c25183642410b22)
+
 ---
 
 ## Schematic & Wiring
